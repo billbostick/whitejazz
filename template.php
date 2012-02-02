@@ -46,51 +46,8 @@ if (is_null(theme_get_setting('whitejazz_width'))) {
   theme_get_setting('', TRUE);
 }
 
-function whitejazz_regions() {
-  return array(
-    'sidebar_left' => t('left sidebar'),
-    'sidebar_right' => t('right sidebar'),
-    'content_top' => t('content top'),
-    'content_bottom' => t('content bottom'),
-    'header' => t('header'),
-    'suckerfish' => t('suckerfish menu'),
-    'user1' => t('user1'),
-    'user2' => t('user2'),
-    'user3' => t('user3'),
-    'user4' => t('user4'),
-    'user5' => t('user5'),
-    'user6' => t('user6'),
-    'footer_region' => t('footer')
-  );
-} 
- 
 if (theme_get_setting('whitejazz_iepngfix')) {
    drupal_add_js(drupal_get_path('theme', 'whitejazz') .'/js/jquery.pngFix.js', 'theme');
-}
-
-function _phptemplate_variables($hook, $vars) {
-  if (module_exists('advanced_profile')) {
-    $vars = advanced_profile_addvars($hook, $vars);
-  }
-  if (module_exists('advanced_forum')) {
-    $vars = advanced_forum_addvars($hook, $vars);
-  }
-  if ($hook == 'page') {
-    if (module_exists('page_title')) {
-      $vars['head_title'] = page_title_page_get_title();
-    }
-  }
-  return $vars;
-}
-
-
-function whitejazz_block($block) {
-  if (module_exists('blocktheme')) {
-    if ( $custom_theme = blocktheme_get_theme($block) ) {
-      return _phptemplate_callback($custom_theme, array('block' => $block));
-    }
-  }
-  return phptemplate_block($block);
 }
 
 if (theme_get_setting('whitejazz_uselocalcontent')) {
